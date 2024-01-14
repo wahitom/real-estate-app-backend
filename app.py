@@ -17,4 +17,4 @@ db.init_app(app)
 @app.route('/')
 def index():
     return "First Flask app "
-
+ 
