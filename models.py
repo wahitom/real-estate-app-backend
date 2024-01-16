@@ -36,7 +36,7 @@ class LocationModel(db.Model):
     
 
 
-#  12. Create Property model 
+#  12. create properties table 
 class PropertyModel(db.Model):
 
     __tablename__ = "properties"
@@ -45,7 +45,7 @@ class PropertyModel(db.Model):
     name = db.Column(db.Text, nullable= False)
     description = db.Column(db.String, nullable= False)
     listing_price = db.Column(db.Integer, nullable=False)
-    location_id = db.Column(db.Integer, nullable=False)
+    location_id = db.Column(db.Integer, db.ForeignKey('locations.id'), nullable=False)
     type_of_property = db.Column(db.Text, nullable=False)
     is_active = db.Column(db.Boolean, default=True)
     created_at = db.Column(db.TIMESTAMP, server_default = db.func.now()) 
