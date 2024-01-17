@@ -3,7 +3,15 @@ from flask import Flask
 
 #  8. import flask migrate 
 from flask_migrate import Migrate 
+
+#  13. Import flask restful (12 from models.py) afterpip installing it 
+from flask_restful import Api, Resource
+
 from models import db, User
+#  17. import location from resources folder(16 in resources)
+from resources.location import Location
+
+
 
 #  2. create an instance for flask after we've pip installed it 
 app = Flask(__name__)
@@ -18,9 +26,20 @@ migrations =  Migrate(app, db)
 # 10. init the db
 db.init_app(app)
 
-# 3. Define an initial route
-#  at this stage if you do flask run and navigate to that link you will see your flask app
-@app.route('/')
-def index():
-    return "First Flask app "
+# 14. Initialize the flask restful(15 in resource.py)
+api = Api(app)
+
+class AppResource(Resource):
+    def get(self):
+        return "Welcome to the realestate apis"
+
+
+
+# 18. Comment our the previous route and write one that incorporates the flask RESTful that
+#  we just installed 
+# api.add_resource(AppResource, '/')
+
+# # 20 this accepts the methods ie GET  (19 in resource)
+api.add_resource(Location,'/location', '/location/<int:id>')
+
  

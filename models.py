@@ -24,6 +24,8 @@ class User(db.Model):
     # deleted_at = db.Column(db.TIMESTAMP)
 
 
+
+
 # 11. create location model (from 10 in app.py)
 class LocationModel(db.Model):
     
@@ -33,10 +35,18 @@ class LocationModel(db.Model):
     name = db.Column(db.Text, nullable= False)
     created_at = db.Column(db.TIMESTAMP, server_default = db.func.now()) 
     updated_at = db.Column(db.TIMESTAMP, onupdate = db.func.now())
+
+    def json(self):
+        return {
+            "id" : self.id,
+            "name": self.name,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at
+        }
     
 
 
-#  12. create properties table 
+#  12. create properties table (13 in app.py)
 class PropertyModel(db.Model):
 
     __tablename__ = "properties"
