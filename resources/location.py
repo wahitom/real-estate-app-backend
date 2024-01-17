@@ -20,12 +20,16 @@ resource_fields = {
 class Location(Resource):
     #  define parser  
     parser = reqparse.RequestParser()
+    #  dedine the argument and required fields
     parser.add_argument("name", required=True, help="Location name is required")
        
     # get a single location
     #  then after defining resource_fields we add marshal_with
     @marshal_with(resource_fields)
     def get(self, id=None):
+        # the above specifies that if the id is present we get a
+        #  single location else we get all the locations
+
         # after adding marshal_with we add a condition ie to 
         #  check if the id exists we add in a single location
 
